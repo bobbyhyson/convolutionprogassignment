@@ -1,0 +1,20 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+
+" Line numbers (optional but nice)
+set number
+
+" Treat .h as C so coc/clangd only attach to .c/.h
+augroup c_headers
+  autocmd!
+  autocmd BufNewFile,BufRead *.h setlocal filetype=c
+augroup END
+
+" Show diagnostics automatically when the cursor stops
+autocmd CursorHold * silent call CocActionAsync('diagnosticInfo')
+autocmd CursorHold * silent call CocActionAsync('showSignatureHelp')
+set updatetime=500
+
